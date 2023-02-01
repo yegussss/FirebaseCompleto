@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+//import { getFirestore, collection, addDoc, getDoc } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js";
 
-const provider = new GoogleAuthProvider();
 const firebaseConfig = {
   apiKey: "AIzaSyDZO1zM4AJWqquwm83WHhy4S11hDUcMKHo",
   authDomain: "practica1fb.firebaseapp.com",
@@ -98,3 +98,43 @@ googleBut.addEventListener("click", function(){
   });
 })
 
+/*
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
+
+try {
+  const docRef = await addDoc(collection(db, "users"), {
+    first: "Ada",
+    last: "Lovelace",
+    born: 1815
+  });
+  console.log("Document written with ID: ", docRef.id);
+} catch (e) {
+  console.error("Error adding document: ", e);
+}
+
+// Add a second document with a generated ID.
+import { addDoc, collection } from "firebase/firestore"; 
+
+try {
+  const docRef = await addDoc(collection(db, "users"), {
+    first: "Alan",
+    middle: "Mathison",
+    last: "Turing",
+    born: 1912
+  });
+
+  console.log("Document written with ID: ", docRef.id);
+} catch (e) {
+  console.error("Error adding document: ", e);
+}
+
+const querySnapshot = await getDocs(collection(db, "users"));
+querySnapshot.forEach((doc) => {
+  console.log(`${doc.id} => ${doc.data()}`);
+});
+*/
