@@ -55,6 +55,23 @@ main {
     margin-top: 20px;
 }
 
+.buttonsCon {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.buttonsCon button {
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: #0077c9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
 .buttons button {
     padding: 12px 24px;
     font-size: 18px;
@@ -84,7 +101,20 @@ main {
     border: 1px solid #0077c9;
 }
 
+#googleCon {
+    background-color: rgb(190, 32, 32);
+    color: #ffffff;
+    border: 1px solid #ff0000;
+}
+
 .buttons button:hover {
+    background-color: #0077c9;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.buttonsCon button:hover {
     background-color: #0077c9;
     color: #fff;
     transition: all 0.3s ease-in-out;

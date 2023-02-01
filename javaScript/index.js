@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 
+const provider = new GoogleAuthProvider();
 const firebaseConfig = {
   apiKey: "AIzaSyDZO1zM4AJWqquwm83WHhy4S11hDUcMKHo",
   authDomain: "practica1fb.firebaseapp.com",
@@ -18,6 +19,8 @@ const logged = document.getElementById("log-in")
 const nologged = document.getElementById("log-off")
 const email = document.getElementById("mail");
 const pass = document.getElementById("pass");
+const googleBut = document.getElementById("googleCon")
+const providerGoogle = new GoogleAuthProvider();
 
 create.addEventListener("click", function () {
     createUserWithEmailAndPassword(auth, email.value, pass.value)
@@ -73,3 +76,25 @@ nologged.addEventListener("click", function () {
     // An error happened.
   });
 });
+
+googleBut.addEventListener("click", function(){
+  signInWithPopup(auth, providerGoogle)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+})
+
