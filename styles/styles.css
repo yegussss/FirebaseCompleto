@@ -12,11 +12,10 @@ main {
 
 .titulo {
     text-align: center;
-    margin-top: 50px;
 }
 
 .usuario{
-    margin-top: 1cm;
+    margin-top: 30px;
     text-align: right;
     color: #0077c9;
 }
@@ -49,7 +48,13 @@ main {
     border-radius: 5px;
 }
 
-.buttons {
+.buttonsP {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.buttonsC {
     display: flex;
     justify-content: center;
     margin-top: 20px;
@@ -70,9 +75,21 @@ main {
     color: #fff;
     border: none;
     cursor: pointer;
+    width: 30%;
 }
 
-.buttons button {
+.buttonsP button {
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: #0077c9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.buttonsC button {
     padding: 12px 24px;
     font-size: 18px;
     border-radius: 5px;
@@ -107,7 +124,19 @@ main {
     border: 1px solid #ff0000;
 }
 
-.buttons button:hover {
+#twitterCon {
+    background-color: rgb(48, 196, 223);
+    color: #ffffff;
+    border: 1px solid #f5f2f2;
+}
+
+#gitCon {
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    border: 1px solid #eee9e9;
+}
+
+.buttonsP button:hover {
     background-color: #0077c9;
     color: #fff;
     transition: all 0.3s ease-in-out;
@@ -119,4 +148,345 @@ main {
     color: #fff;
     transition: all 0.3s ease-in-out;
     transform: scale(1.1);
+}
+
+.buttonsC button:hover {
+    background-color: #0077c9;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.hide{
+    display: none;
+}
+
+/*Parte del CRUD*/
+
+.inputsCreate {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.inputsCreate input {
+    width: 80%;
+    max-width: 300px;
+    margin: 10px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #0077c9;
+    border-radius: 5px;
+}
+
+.crear {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+}
+
+#titC {
+  font-size: 20px;
+  color: #0077c9;
+}
+
+#buttonCreate {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: #0077c9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 91%;
+}
+
+#buttonCreate:hover {
+    background-color: #0077c9;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);}
+
+#buttonEdit{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: #0077c9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 91%;
+}
+
+#buttonEdit:hover {
+    background-color: #0077c9;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);}
+
+#buttonElim{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: #0077c9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 91%;
+}
+
+#buttonElim:hover {
+    background-color: #0077c9;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);}
+
+#buttonSearch{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: #0077c9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 91%;
+}
+
+#buttonSearch:hover {
+    background-color: #0077c9;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);}
+
+
+ .inputsEdlim {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#buttonRead{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: #0077c9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 91%;
+}
+
+#buttonRead:hover {
+    background-color: #0077c9;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);}
+    
+.inputsEdlim input {
+    width: 80%;
+    max-width: 300px;
+    margin: 10px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #0077c9;
+    border-radius: 5px;
+}
+
+#mosMap{
+    background-color: #fff;
+    color: #0077c9;
+    border: 1px solid #0077c9;
+}  
+
+/* Ventana Emergente */
+.modal-container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;  
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+  }
+  
+  .show {
+    pointer-events: auto;
+    opacity: 1;
+  }
+  
+  .modal {
+    background-color: #fff;
+    width: 600px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  #closePop {
+    background-color: #fff;
+    color: #0077c9;
+    border: 1px solid #0077c9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    padding: 10px 25px;
+  }
+
+  #dataFB{
+    justify-content: center;
+  }
+  
+#closeMap{
+    background-color: #fff;
+    color: #0077c9;
+    border: 1px solid #0077c9;
+}
+
+/* MapBox */
+#map { 
+position: absolute;
+margin-left: 16rem;
+top: 1px;  
+width: 600px;
+height: 400px;
+}
+
+#mapcont {
+    position: relative;
+    right: 29rem;
+    margin-top: 1cm;
+  }
+  
+  #ubi {
+    position: absolute;
+    z-index: 1;
+    color: #0077c9;
+    font-size: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+
+/* Responsividad */
+
+@media only screen and (max-width: 1280px) {
+
+    #map { 
+        left: 0cm;
+        width: 700px;
+        height: 500px;
+        }
+
+    
+}
+
+@media only screen and (max-width: 850px) {
+    main {
+        width: 90%;
+    }
+    
+    .titulo h1 {
+        font-size: 28px;
+    }
+    
+    .titulo p {
+        font-size: 14px;
+    }
+    
+    .inputs input {
+        width: 80%;
+    }
+
+    .buttonsP button,
+    .buttonsCon button,
+    .buttonsC button {
+        padding: 8px;
+        font-size: 14px;
+        width: 80%;
+    }
+
+    #map { 
+        left: 1cm;
+        width: 350px;
+        height: 350px;
+        }
+    
+}
+
+@media only screen and (max-width: 600px) {
+    main {
+        width: 90%;
+    }
+    
+    .titulo h1 {
+        font-size: 28px;
+    }
+    
+    .titulo p {
+        font-size: 14px;
+    }
+    
+    .inputs input {
+        width: 80%;
+    }
+
+    .buttonsP button,
+    .buttonsCon button,
+    .buttonsC button {
+        padding: 8px;
+        font-size: 14px;
+        width: 90%;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .inputs input {
+        width: 60%;
+        font-size: 14px;
+    }
+    
+    .buttonsP button,
+    .buttonsCon button,
+    .buttonsC button {
+        padding: 8px;
+        font-size: 14px;
+        width: 90%;
+    }
+
+    #map { 
+        left: 2.5cm;
+        width: 240px;
+        height: 240px;
+        }
+
+    
 }

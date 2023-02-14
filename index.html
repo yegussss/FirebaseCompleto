@@ -1,40 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
     <title>Firebase</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <nav class="usuario" id="usuario">
-            <p></p>
+      <div id="principal">
+        <nav class="usuario" id="usuarioP">
+          <p></p>
         </nav>
         <header class="titulo">
-            <h1>Práctica con Firebase :)</h1>
-            <p>Introduzca sus Datos</p>
+          <h1>Práctica con Firebase :)</h1>
+          <p>Introduzca sus Datos</p>
         </header>
 
         <section class="inputs">
-            <input type="email" placeholder="********@*****.***" name="correo" id="mail">
-            <input type="password" placeholder="Contraseña..." name="contraseña" id="pass">
+          <input
+            type="email"
+            placeholder="********@*****.***"
+            name="correo"
+            id="mail"
+          />
+          <input
+            type="password"
+            placeholder="Contraseña..."
+            name="contraseña"
+            id="pass"
+          />
         </section>
-        <br>
-        <section class="buttons">
-            <button id="sign-in">Crear cuenta</button>
-            <Button id="log-in">Iniciar sesión</Button>
-            <Button id="log-off">Cerrar sesión</Button>
+
+        <br />
+
+        <section class="buttonsP">
+          <button id="sign-in">Crear cuenta</button>
+          <button id="log-in">Iniciar sesión</button>
         </section>
-        <br>
-        <section class="buttonsCon">
-            <Button id="googleCon">Inicia con Google</Button>
-            <Button id="faceCon">Inicia con Facebook</Button>
+
+        <br />
+
+        <div id="botonesInicio">
+            <section class="buttonsCon">
+                <button id="googleCon">Inicia con Google</button>
+              </section>
+              <br />
+              <section class="buttonsCon">
+                <button id="faceCon">Inicia con Facebook</button>
+              </section>
+              <br />
+              <section class="buttonsCon">
+                <button id="twitterCon">Inicia con Twitter</button>
+              </section>
+              <br />
+              <section class="buttonsCon">
+                <button id="gitCon">Inicia con GitHub</button>
+              </section>
+            </div>
+        </div>
+      </div>
+
+      <div id="crud" class="hide">
+        <nav class="usuario" id="usuarioC">
+            <p></p>
+          </nav>
+
+          <header class="titulo">
+            <h1>Registros y lectura de datos :)</h1>
+          </header>
+    
+          <section class="crear" id="create">
+            <section class="inputsCreate">
+                <div>
+                    <input id="createName" type="text" placeholder="Nombre">
+                </div>
+                <div>
+                    <input id="createSec" type="text" placeholder="Apellido">            
+                </div>
+                <div>
+                    <input id="createAge" type="number" placeholder="Edad"> 
+                </div>
+                    <button id="buttonCreate">Añadir</button> 
+            </section>
+
+        <section>
+            <section class="inputsEdlim">
+                <div>
+                    <input id="edlimId" type="text" placeholder="ID del registro">
+                </div>
+                <div>
+                    <input id="edlimName" type="text" placeholder="Nombre">
+                </div>
+                <div>
+                    <input id="edlimSec" type="text" placeholder="Apellido">            
+                </div>
+                <div>
+                    <input id="edlimAge" type="number" placeholder="Edad"> 
+                </div>
+                    <button id="buttonSearch">Buscar</button>
+                    <br>
+                    <button id="buttonEdit">Actualizar</button>
+                    <br>
+                    <button id="buttonElim">Eliminar</button>
+                    <br>
+                    <button id="buttonRead">Leer datos</button>
+                </section>
         </section>
+        <div class="modal-container" id="modalCont">
+            <div class="modal" id="modal">
+                <table id="dataFB">
+                    Datos:
+                </table>
+                <br>
+                <button id="closePop">Cerrar</button>
+            </div>
+        </div>
+        <section class="buttonsC" id="botonesFinales">
+            <button id="log-off">Cerrar sesión</button>
+        </section>
+        <div class="" id="mapcont">
+          <div class="" id="map"></div>
+        </div>
+      </div>
+        </div>
+
+      </div>
+
+      </div>
     </main>
 
     <script src="./javaScript/index.js" type="module"></script>
-
-</body>
+  </body>
 </html>
