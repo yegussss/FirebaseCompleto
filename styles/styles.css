@@ -118,6 +118,20 @@ main {
     border: 1px solid #0077c9;
 }
 
+#play {
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: #0077c9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+    color: #0077c9;
+    border: 1px solid #0077c9;
+}
+
 #googleCon {
     background-color: rgb(190, 32, 32);
     color: #ffffff;
@@ -381,18 +395,18 @@ height: 400px;
 
 #mapcont {
     position: relative;
-    right: 29rem;
+    right: 35rem;
     margin-top: 1cm;
   }
   
   #ubi {
     position: absolute;
-    z-index: 1;
     color: #0077c9;
     font-size: 30px;
     margin-bottom: 10px;
     text-align: center;
   }
+
 
 
 /* Responsividad */

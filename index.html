@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./styles/styles.css" />
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
     <title>Firebase</title>
   </head>
   <body>
@@ -16,8 +18,8 @@
           <p></p>
         </nav>
         <header class="titulo">
-          <h1>Práctica con Firebase :)</h1>
-          <p>Introduzca sus Datos</p>
+          <h1>Snakes & Death</h1>
+          <p>Registrese para jugar otro 'Snake-Game' más... ¿O no?</p>
         </header>
 
         <section class="inputs">
@@ -70,7 +72,7 @@
           </nav>
 
           <header class="titulo">
-            <h1>Registros y lectura de datos :)</h1>
+            <h1>Gestor de cuentas</h1>
           </header>
     
           <section class="crear" id="create">
@@ -79,12 +81,12 @@
                     <input id="createName" type="text" placeholder="Nombre">
                 </div>
                 <div>
-                    <input id="createSec" type="text" placeholder="Apellido">            
+                    <input id="createSec" type="text" placeholder="Usuario">            
                 </div>
                 <div>
-                    <input id="createAge" type="number" placeholder="Edad"> 
+                    <input id="createAge" type="text" placeholder="Ubicacion"> 
                 </div>
-                    <button id="buttonCreate">Añadir</button> 
+                    <button id="buttonCreate">Añadir cuenta</button> 
             </section>
 
         <section>
@@ -96,24 +98,27 @@
                     <input id="edlimName" type="text" placeholder="Nombre">
                 </div>
                 <div>
-                    <input id="edlimSec" type="text" placeholder="Apellido">            
+                    <input id="edlimSec" type="text" placeholder="Usuario">            
                 </div>
                 <div>
-                    <input id="edlimAge" type="number" placeholder="Edad"> 
+                    <input id="edlimAge" type="text" placeholder="Ubicacion"> 
                 </div>
-                    <button id="buttonSearch">Buscar</button>
+                <div>
+                    <input id="edlimScore" type="number" placeholder="Nuevo HighScore"> 
+                </div>
+                    <button id="buttonSearch">Gestionar cuenta</button>
                     <br>
-                    <button id="buttonEdit">Actualizar</button>
+                    <button id="buttonEdit">Actualizar datos</button>
                     <br>
-                    <button id="buttonElim">Eliminar</button>
+                    <button id="buttonElim">Borrar cuenta</button>
                     <br>
-                    <button id="buttonRead">Leer datos</button>
+                    <button id="buttonRead">Tabla de clasificación</button>
                 </section>
         </section>
         <div class="modal-container" id="modalCont">
             <div class="modal" id="modal">
                 <table id="dataFB">
-                    Datos:
+                    Jugadores de "Snakes & Death":
                 </table>
                 <br>
                 <button id="closePop">Cerrar</button>
@@ -121,18 +126,20 @@
         </div>
         <section class="buttonsC" id="botonesFinales">
             <button id="log-off">Cerrar sesión</button>
+            <form action="https://snakesanddeath.onrender.com">
+              <input id= "play" type="submit" value='Jugar "Snakes & Death"' />
+            </form>
         </section>
+
         <div class="" id="mapcont">
           <div class="" id="map"></div>
         </div>
-      </div>
-        </div>
 
       </div>
 
-      </div>
     </main>
-
     <script src="./javaScript/index.js" type="module"></script>
+    <script src="https://unpkg.com/three@0.126.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
   </body>
 </html>

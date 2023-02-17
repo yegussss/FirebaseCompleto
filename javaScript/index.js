@@ -1,3 +1,5 @@
+//----------------------------FIREBASE-------------------------------//
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
 import {
   getAuth,
@@ -55,16 +57,20 @@ const del = document.getElementById("buttonElim");
 const edit = document.getElementById("buttonEdit");
 const read = document.getElementById("buttonRead");
 const name1 = document.getElementById("createName");
-const apellido1 = document.getElementById("createSec");
-const age1 = document.getElementById("createAge");
+const user1 = document.getElementById("createSec");
+const loc1 = document.getElementById("createAge");
 const id = document.getElementById("edlimId");
 const name2 = document.getElementById("edlimName");
-const apellido2 = document.getElementById("edlimSec");
-const age2 = document.getElementById("edlimAge");
+const user2 = document.getElementById("edlimSec");
+const puntos = document.getElementById("edlimScore")
+const loc2 = document.getElementById("edlimAge");
 const tabla = document.getElementById("dataFB");
 //const mapClose = document.getElementById("closeMap");
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
+
+var geo1;
+var geo2;
 
 create.addEventListener("click", function () {
   createUserWithEmailAndPassword(auth, email.value, pass.value)
@@ -207,8 +213,9 @@ add.addEventListener("click", async () => {
   try {
     await setDoc(doc(db, "users", name1.value), {
       Nombre: name1.value,
-      Apellido: apellido1.value,
-      Edad: age1.value,
+      Usuario: user1.value,
+      Ubicacion: loc1.value,
+      HighScore: 0,
     });
     alert(`Documento con el ID: ${name1.value} ha sido creado!`);
   } catch (error) {
@@ -222,8 +229,9 @@ read.addEventListener("click", async () => {
   tabla.innerHTML = `<tr>
       <td>  ID  </td>
       <td>  Nombre  </td>
-      <td>  Apellido(s)  </td>
-      <td>  Edad  </td>
+      <td>  Usuario  </td>
+      <td>  Ubicación  </td>
+      <td>  HighScore  </td>
   </tr>`;
 
   const querySnapshot = await getDocs(collection(db, "users"));
@@ -232,8 +240,9 @@ read.addEventListener("click", async () => {
     tabla.innerHTML += `<tr>
           <td>${doc.id}</td>
           <td>${doc.data().Nombre}</td>
-          <td>${doc.data().Apellido}</td>
-          <td>${doc.data().Edad}</td>
+          <td>${doc.data().Usuario}</td>
+          <td>${doc.data().Ubicacion}</td>
+          <td>${doc.data().HighScore}</td>
       </tr>`;
   });
 });
@@ -244,9 +253,73 @@ search.addEventListener("click", async () => {
 
   if (docSnap.exists()) {
     name2.value = docSnap.data().Nombre;
-    apellido2.value = docSnap.data().Apellido;
-    age2.value = docSnap.data().Edad;
-    console.log("Document data:", docSnap.data());
+    user2.value = docSnap.data().Usuario;
+    loc2.value = docSnap.data().Ubicacion;
+    puntos.value = docSnap.data().HighScore;
+    geo1 = docSnap.data().Longitud;
+    geo2 = docSnap.data().Latitud;
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoieWVndXNzc3MiLCJhIjoiY2xkdnZjM2RqMDFicDNvbndsMnZqcGp1YSJ9.Qnl1Kti39jC3Nu0M8xZfBQ';
+const map = new mapboxgl.Map({
+    container: 'map',
+    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    style: 'mapbox://styles/mapbox/streets-v12',
+    center: [geo1 , geo2],
+    zoom: 2,
+    projection: 'globe' // starting projection
+    // create the gl context with MSAA antialiasing, so custom layers are antialiased
+});
+
+// Add the control to the map.
+map.addControl(
+    new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+    })
+);
+
+map.on('load', () => {
+    // Load an image from an external URL.
+    map.loadImage(
+    'https://cdn-icons-png.flaticon.com/512/9559/9559031.png',
+    (error, image) => {
+    if (error) throw error;
+     
+    // Add the image to the map style.
+    map.addImage('cat', image);
+     
+    // Add a data source containing one point feature.
+    map.addSource('point', {
+    'type': 'geojson',
+    'data': {
+    'type': 'FeatureCollection',
+    'features': [
+    {
+    'type': 'Feature',
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [geo1 , geo2]
+    }
+    }
+    ]
+    }
+    });
+     
+    // Add a layer to use the image to represent the data.
+    map.addLayer({
+    'id': 'points',
+    'type': 'symbol',
+    'source': 'point', // reference the data source
+    'layout': {
+    'icon-image': 'cat', // reference the image
+    'icon-size': 0.25
+    }
+    });
+    }
+    );
+    });
+    
+    console.log("La puntuación más alta del jugador " + docSnap.data().Usuario + " fue de: " + docSnap.data().HighScore);
   } else {
     // doc.data() will be undefined in this case
     console.log("No such document!");
@@ -259,8 +332,9 @@ edit.addEventListener("click", async () => {
 
   await updateDoc(elementRef, {
     Nombre: name2.value,
-    Apellido: apellido2.value,
-    Edad: age2.value,
+    Usuario: user2.value,
+    Ubicacion: loc2.value,
+    HighScore: puntos.value,
   });
   alert(
     "Los datos registrados del documento con ID: " +
@@ -279,33 +353,64 @@ close.addEventListener("click", () => {
   modal_container.classList.remove("show");
 });
 
-//MapBox y su integración
+//----------------------------------MAPBOX------------------------------------------------//
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoieWVndXNzc3MiLCJhIjoiY2xkdnZjM2RqMDFicDNvbndsMnZqcGp1YSJ9.Qnl1Kti39jC3Nu0M8xZfBQ";
+mapboxgl.accessToken = 'pk.eyJ1IjoieWVndXNzc3MiLCJhIjoiY2xkdnZjM2RqMDFicDNvbndsMnZqcGp1YSJ9.Qnl1Kti39jC3Nu0M8xZfBQ';
 const map = new mapboxgl.Map({
-  container: "map",
-  // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-  style: "mapbox://styles/mapbox/streets-v12",
-  center: [-103.43338, 25.57661],
-  zoom: 15,
-  projection: "globe", // starting projection
+    container: 'map',
+    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    style: 'mapbox://styles/mapbox/streets-v12',
+    center: [geo1 , geo2],
+    zoom: 5,
+    projection: 'globe' // starting projection
+    // create the gl context with MSAA antialiasing, so custom layers are antialiased
 });
-
-// Create a default Marker and add it to the map.
-const marker1 = new mapboxgl.Marker()
-  .setLngLat([-103.43338, 25.57661])
-  .addTo(map);
 
 // Add the control to the map.
 map.addControl(
-  new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    mapboxgl: mapboxgl,
-  })
+    new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+    })
 );
 
-//Trabajo terminado
-
-
-
+map.on('load', () => {
+    // Load an image from an external URL.
+    map.loadImage(
+    'https://cdn-icons-png.flaticon.com/512/9559/9559031.png',
+    (error, image) => {
+    if (error) throw error;
+     
+    // Add the image to the map style.
+    map.addImage('cat', image);
+     
+    // Add a data source containing one point feature.
+    map.addSource('point', {
+    'type': 'geojson',
+    'data': {
+    'type': 'FeatureCollection',
+    'features': [
+    {
+    'type': 'Feature',
+    'geometry': {
+    'type': 'Point',
+    'coordinates': [139.72323,35.55732]
+    }
+    }
+    ]
+    }
+    });
+     
+    // Add a layer to use the image to represent the data.
+    map.addLayer({
+    'id': 'points',
+    'type': 'symbol',
+    'source': 'point', // reference the data source
+    'layout': {
+    'icon-image': 'cat', // reference the image
+    'icon-size': 0.25
+    }
+    });
+    }
+    );
+    });
